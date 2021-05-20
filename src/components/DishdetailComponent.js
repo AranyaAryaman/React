@@ -38,7 +38,6 @@ function RenderComments({comments}){
         </div>
     );
 
-
 }
 
 const Dishdetail = (props) => {
