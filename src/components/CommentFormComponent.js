@@ -17,8 +17,8 @@ class CommentForm extends Component {
     }
 
     handleSubmit(values){
-        console.log("Current State is: " + JSON.stringify(values));
-        alert("Current State is: " + JSON.stringify(values));
+        this.toggleModal();
+        this.props.addComment(this.props.dishId, values.rating, values.yourname, values.comment);
     }
 
     toggleModal(){
@@ -77,7 +77,7 @@ class CommentForm extends Component {
                                     <Label htmlFor="comment">Comment</Label>
                                 </Col>
                                 <Col md={12}>
-                                    <Control.textarea model=".textarea" type="textarea" id="comment" name="comment" rows="6" className="form-control" />
+                                    <Control.textarea model=".comment" type="textarea" id="comment" name="comment" rows="6" className="form-control" />
                                 </Col>
                             </Row>
                             <Button type="submit" value="submit" className="primary">Submit</Button>
