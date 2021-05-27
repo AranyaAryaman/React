@@ -1,7 +1,8 @@
 import React from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import {Link} from 'react-router-dom';
-import CommentForm from './CommentFormComponent'
+import CommentForm from './CommentFormComponent';
+import {Loading} from './LoadingComponent';
  
 function RenderDish({myDish}){
 
@@ -53,7 +54,27 @@ function RenderComments({comments, addComment, dishId}){
 
 const Dishdetail = (props) => {
 
-    if(props.showDish == null){
+    if(props.isLoading) {
+        return(
+            <div className="containter">
+                <div className="row">
+                    <Loading />
+                </div>
+            </div>
+        );
+    }
+
+    else if (props.errMess){
+        return(
+            <div className="containter">
+                <div className="row">
+                    <h4> {props.errMess} </h4>
+                </div>
+            </div>
+        );
+    }
+
+    else if(props.showDish == null){
         return(
             <div><p>Hi 1st</p></div>
         );
