@@ -1,7 +1,8 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
-
+import {baseUrl} from '../shared/baseUrl';
+import { Fade, Stagger } from 'react-animation-components';
 
 function RenderLeader({myLeader})
 {   
@@ -15,7 +16,7 @@ function RenderLeader({myLeader})
         return(
             <Media tag="li">
                 <Media>
-                    <Media object src = {myLeader.image} alt={myLeader.name} />
+                    <Media object src = {baseUrl + myLeader.image} alt={myLeader.name} />
                 </Media>
                 <Media body className="ml-5">
                     <Media heading>{myLeader.name}</Media>
@@ -30,12 +31,13 @@ function RenderLeader({myLeader})
 
 function About(props) {
 
-    const leaders = props.leaders.map((leader) => {
+    const leaders = props.leaders.leaders.map((leader) => {
         return (
-            <div key={leader.id} className="mt-5">
-                <RenderLeader myLeader={leader}></RenderLeader>
-            </div>
-
+            <Fade in>
+                <div key={leader.id} className="mt-5">
+                    <RenderLeader myLeader={leader}></RenderLeader>
+                </div>
+            </Fade>
         );
     });
 
@@ -71,22 +73,22 @@ function About(props) {
                                 <dt className="col-6">Employees</dt>
                                 <dd className="col-6">40</dd>
                             </dl>
-                        </CardBody>
+                         </CardBody>
                     </Card>
                 </div>
                 <div className="col-12">
-                    <Card>
-                        <CardBody className="bg-faded">
-                            <blockquote className="blockquote">
-                                <p className="mb-0">You better cut the pizza in four pieces because
-                                    I'm not hungry enough to eat six.</p>
-                                <footer className="blockquote-footer">Yogi Berra,
-                                <cite title="Source Title">The Wit and Wisdom of Yogi Berra,
-                                    P. Pepe, Diversion Books, 2014</cite>
-                                </footer>
-                            </blockquote>
-                        </CardBody>
-                    </Card>
+                            <Card>
+                                <CardBody className="bg-faded">
+                                    <blockquote className="blockquote">
+                                        <p className="mb-0">You better cut the pizza in four pieces because
+                                            I'm not hungry enough to eat six.</p>
+                                        <footer className="blockquote-footer">Yogi Berra,
+                                        <cite title="Source Title">The Wit and Wisdom of Yogi Berra,
+                                            P. Pepe, Diversion Books, 2014</cite>
+                                        </footer>
+                                    </blockquote>
+                                </CardBody>
+                            </Card>
                 </div>
             </div>
             <div className="row row-content">
@@ -95,7 +97,9 @@ function About(props) {
                 </div>
                 <div className="col-12">
                     <Media list>
-                        {leaders}
+                        <Stagger in>
+                            {leaders}
+                        </Stagger>
                     </Media>
                 </div>
             </div>
